@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style_login.css}">
+</head>
+<body>
+    <div>
+        <h1>ログイン</h1>
+        <form th:action="@{/account/login/process}" method="post">
+            <label for="email">メールアドレス</label>
+            <input type="text" id="email" name="email" placeholder="Email" required>
+            <label for="password">パスワード</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="submit" id="submit" value="ログイン">
+        </form>
+        <p>登録は<a href="register.html">こちら</a></p>
+    </div>
+</body>
+</html>

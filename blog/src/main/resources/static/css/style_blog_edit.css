@@ -1,0 +1,26 @@
+body{
+    background-image: url(sora.png);
+    background-size: cover;
+}
+div{
+    border-style: dashed;
+    border-width: 5px;
+    border-radius: 20px;
+    color: white;
+    width: 50%;
+    height: 700px;
+    padding: 70px 100px 70px 100px;
+    margin: 100px 200px
+}
+form{
+    margin-top: 50px;
+}
+input,#article{
+    display: block;
+    margin: 10px 0 30px 0;
+}
+span{
+    display: flex;
+    gap: 0 20px;
+    justify-content: left;
+}

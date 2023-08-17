@@ -1,0 +1,51 @@
+body{
+    background-image: url(sora.png);
+    background-size: cover;
+}
+header{
+    border-style: dashed;
+    border-width: 5px;
+    border-radius: 20px;
+    color: white;
+}
+h3{
+    color: skyblue;
+    font-size: 50px;
+}
+ul{
+    display: flex;
+    /*横幅をつける、要素同士を離す*/
+    gap:0 30px;
+    justify-content: right;
+    padding: 20px 50px 20px 0;
+}
+li{
+    list-style: square;
+}
+h1{
+    background-color: white;
+    color: skyblue;
+    font-size: 30px;
+    writing-mode: vertical-rl;
+    margin: 50px 0 0 50px;
+    border-bottom: 5px solid skyblue;
+}
+section{
+    display: flex;
+    gap: 0 50px;
+    justify-content: center;
+    margin: -60px 0 200px 0;
+}
+div{
+    border-style: dashed;
+    width: 35%;
+    height: 450px;
+    border-width: 5px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+a,footer{
+    display: flex;
+    justify-content: center;
+}
