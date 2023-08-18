@@ -10,13 +10,13 @@
 
 <body>
     <div>
-        <form action="@{/register}" method="post">
+        <form th:action="@{/account/blog/register/process}" method="post" enctype="multipart/form-data">
             <label for="title">タイトル</label>
             <input type="text" id="title" name="title">
             <label for="image">画像</label>
             <input type="file" id="image" name="image">
             <label for="article">記事</label>
-            <textarea name="" id="article" cols="65" rows="20"></textarea>
+            <textarea name="article" id="article" cols="65" rows="20"></textarea>
             <span>
                 <input type="submit" id="submit" value="送信">
                 <input type="button" id="button3" value="戻る" onclick="history.back();">

@@ -2,9 +2,9 @@ package blog.ex.controller;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,23 +68,25 @@ public class BlogController {
     public String blogRegister(@RequestParam String title,
     		@RequestParam MultipartFile image,
     		@RequestParam String article,
-    		@RequestParam LocalDateTime registerDate,Model model) {
+    		Model model) {
     	//現在のユーザー情報を取得する
     		AccountEntity accountList = (AccountEntity) session.getAttribute("account");
     		Long accountId = accountList.getAccountId();
     	/*現在の日時情報を元に、ファイル名を作成している
     	 *その後、imageオブジェクトから元のファイル名を取得し、フォーマットされた日時文字列と連結してfileName変数に代入する*/
-    		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-").format(new Date(accountId))+image.getOriginalFilename();
+    		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-").format(new Date())+image.getOriginalFilename();
     		try {
     			/*ファイルを実際にサーバー上に保存処理する
     			 *Files.copy()を使用し、imageオブジェクトから入力ストリームを取得して指定されたパスにコピーする*/
-    			Files.copy(image.getInputStream(), Path.of("src/main/resources/static/blog-img"+fileName));
+    			Files.copy(image.getInputStream(), Path.of("src/main/resources/static/blog-img/"+fileName));
     		}catch(Exception e) {
     			e.printStackTrace();
     		}
+    		//現在の日時を取得する
+    		LocalDateTime registerDate = LocalDateTime.now();
     		//blogService.createBlogPostを呼び出し、データをDBに保存する
-    		if(blogService.createBlogPost(title, fileName, article, null, accountId)) {
-    			return "blog.html";
+    		if(blogService.createBlogPost(title, fileName, article, registerDate, accountId)) {
+    			return "redirect:/account/blog/list";
     		}else {
     			model.addAttribute("registerMessage","既に登録済みです");
     			return "blog_register.html";
