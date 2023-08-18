@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style_blog_register.css">
+    <link rel="stylesheet" th:href="@{/css/style_blog_register.css}">
 </head>
 
 <body>
     <div>
-        <form action="" method="post">
+        <form action="@{/register}" method="post">
             <label for="title">タイトル</label>
             <input type="text" id="title" name="title">
             <label for="image">画像</label>
@@ -19,7 +19,7 @@
             <textarea name="" id="article" cols="65" rows="20"></textarea>
             <span>
                 <input type="submit" id="submit" value="送信">
-                <input type="submit" id="submit3" value="戻る">
+                <input type="button" id="button3" value="戻る" onclick="history.back();">
             </span>
         </form>
     </div>

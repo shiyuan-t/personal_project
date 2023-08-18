@@ -34,7 +34,7 @@ public class AccountLoginController {
 			return "redirect:/account/login";
 		} else {
 			session.setAttribute("account", accountList);
-			return "redirect:/account/blog";
+			return "redirect:/account/blog/list";
 		}
 	}
 

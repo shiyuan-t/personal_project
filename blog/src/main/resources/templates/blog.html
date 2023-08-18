@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style_blog.css">
+    <link rel="stylesheet" th:href="@{/css/style_blog.css}">
 </head>
 
 <body>
@@ -13,25 +13,25 @@
         <h3>MY BLOG</h3>
         <nav>
             <ul class="title">
-                <li><a href="blog.html">トップ</a></li>
-                <li><a href="blog_write.html">記事を書く</a></li>
-                <li><a href="login.html">ログアウト</a></li>
+                <li><a th:href="@{/account/blog/list}">トップ</a></li>
+                <li><a th:href="@{/account/blog/register}">記事を書く</a></li>
+                <li><a th:href="@{/account/login}">ログアウト</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>夏の風景</h1>
+        <h1>夏の風物詩</h1>
         <section>
             <div>
-                <form action="" method="post">
-                    <img src="himawari.png" alt="">
+                <form th:action="@{/list}" method="post">
+                    <img th:src="@{/blog-img/himawari.png}" alt="">
                     <a href="">ひまわり</a>
                     <p>・ひまわりひまわりひまわり</p>
                 </form>
             </div>
             <div>
                 <form action="" method="post">
-                    <img src="beach_parasol.png" alt="">
+                    <img th:src="@{/blog-img/beach_parasol.png}" alt="">
                     <a href="">ビーチ</a>
                     <p>・ビーチビーチビーチ</p>
                 </form>

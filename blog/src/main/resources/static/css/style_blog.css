@@ -1,5 +1,5 @@
 body{
-    background-image: url(sora.png);
+    background-image: url(../img/sora.png);
     background-size: cover;
 }
 header{
@@ -28,6 +28,7 @@ h1{
     font-size: 30px;
     writing-mode: vertical-rl;
     margin: 50px 0 0 50px;
+    border-right: 5px solid skyblue;
     border-bottom: 5px solid skyblue;
 }
 section{
