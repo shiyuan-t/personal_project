@@ -1,8 +1,11 @@
 package blog.ex.model.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import blog.ex.model.entity.AccountEntity;
+import blog.ex.model.entity.BlogEntity;
 
 //JpaRepository（Spring Data JPAが提供）を継承し、エンティティのCRUD操作を実装する
 public interface AccountDao extends JpaRepository<AccountEntity, Long> {
@@ -14,4 +17,6 @@ public interface AccountDao extends JpaRepository<AccountEntity, Long> {
 
 	// 一致するものを検索し返す
 	AccountEntity findByEmailAndPassword(String email, String password);
+	
+	List<AccountEntity> findByAccountId(Long accountId);
 }

@@ -20,14 +20,14 @@
         </nav>
     </header>
     <main>
-        <h1>夏の風物詩</h1>
+        <h1>夏の風景</h1>
         <section>
             <div th:each="blog:${blogList}">
-                <form th:action="@{/list}" method="post">
+                <!--<form th:action="@{/list}" method="post">-->
                     <img th:src="@{/blog-img/{item}(item=${blog.image})}" alt="">
-                    <a href="@{/user/blog/edit/{blogId}(blogId=${blog.blogId})}" th:text="${blog.title}"></a>
+                    <a th:text="${blog.title}" th:href="@{/account/blog/edit/{blogId}(blogId=${blog.blogId})}"></a>
                     <p th:text="${blog.article}"></p>
-                </form>
+                <!--</form>-->
             </div>
         </section>
     </main>
