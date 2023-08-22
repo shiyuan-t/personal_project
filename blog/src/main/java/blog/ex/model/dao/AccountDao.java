@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import blog.ex.model.entity.AccountEntity;
 import blog.ex.model.entity.BlogEntity;
 
-//JpaRepository（Spring Data JPAが提供）を継承し、エンティティのCRUD操作を実装する
+// JpaRepository（Spring Data JPAが提供）を継承し、エンティティのCRUD操作を実装する
 public interface AccountDao extends JpaRepository<AccountEntity, Long> {
 	// AccountEntityを引数として受け取り、AccountEntityを保存し、保存したAccountEntityを返す
 	AccountEntity save(AccountEntity accountEntity);
@@ -17,6 +17,6 @@ public interface AccountDao extends JpaRepository<AccountEntity, Long> {
 
 	// 一致するものを検索し返す
 	AccountEntity findByEmailAndPassword(String email, String password);
-	
+
 	List<AccountEntity> findByAccountId(Long accountId);
 }

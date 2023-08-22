@@ -8,9 +8,9 @@ div{
     border-radius: 20px;
     color: white;
     width: 50%;
-    height: 700px;
-    padding: 70px 100px 70px 100px;
-    margin: 100px 200px
+    height: 950px;
+    padding: 0 0 100px 200px;
+    margin: 100px 200px;
 }
 form{
     margin-top: 50px;

@@ -2,29 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" th:href="@{/css/style_blog_edit.css}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" th:href="@{/css/style_blog_edit.css}">
 </head>
 
 <body>
-    <div>
-        <form th:action="@{/account/blog/update}" method="post">
-            <label for="title">タイトル</label>
-            <input type="text" id="title" name="title" th:value="${blogList.title}">
-            <label for="image">登録済み画像</label>
-            <img th:src="@{/blog-img/{items}(items=${blogList.image})}">
-            <button th:attr="onClick='location.href=\''+'/account/blog/image/edit/'+${blogList.blogId}+'\''">画像変更</button>
-            <label for="article">記事</label>
-            <textarea name="" id="article" cols="65" rows="20" th:text="${blogList.article}"></textarea>
-            <span>
-                <input type="button" id="button1" value="変更">
-                <input type="button" id="button2" value="削除">
-                <input type="button" id="button3" value="戻る" onclick="history.back();">
-            </span>
-        </form>
-    </div>
+	<div>
+		<form class="edit" th:action="@{/account/blog/update}" method="post" enctype="multipart/form-data">
+			<label for="title">タイトル</label>
+			<input type="text" id="title" name="title" th:value="${blogList.title}">
+			<label for="image">登録済み画像</label>
+			<img th:src="@{/blog-img/{items}(items=${blogList.image})}">
+			<!--<button type="button" th:attr="onClick='location.href=\''+'/account/blog/image/edit/'+${blogList.blogId}+'\''">画像変更</button>-->
+			<label for="image-update">新しい画像</label>
+			<input type="file" name="image" id="image-update">
+			<label for="article">記事</label>
+			<textarea name="article" id="article" cols="65" rows="20" th:text="${blogList.article}"></textarea>
+			<span>
+				<input type="hidden" name="blogId" th:value="${blogList.blogId}">
+				<input type="submit" id="submit1" value="変更">
+				<input type="submit" id="submit2" value="削除" th:formaction="@{/account/blog/delete}">
+				<input type="button" id="button3" value="戻る" onclick="history.back();">
+			</span>
+		</form>
+	</div>
 </body>
 
 </html>

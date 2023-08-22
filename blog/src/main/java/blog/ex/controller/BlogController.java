@@ -66,7 +66,7 @@ public class BlogController {
 		return "blog_register.html";
 	}
 
-	//
+	// ブログ記事を登録する
 	@PostMapping("/register/process")
 	public String blogRegister(@RequestParam String title, @RequestParam MultipartFile image,
 			@RequestParam String article, Model model) {
@@ -80,7 +80,8 @@ public class BlogController {
 		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-").format(new Date()) + image.getOriginalFilename();
 		try {
 			/*
-			 * ファイルを実際にサーバー上に保存処理する Files.copy()を使用し、imageオブジェクトから入力ストリームを取得して指定されたパスにコピーする
+			 * ファイルを実際にサーバー上に保存処理する 
+			 * Files.copy()を使用し、imageオブジェクトから入力ストリームを取得して指定されたパスにコピーする
 			 */
 			Files.copy(image.getInputStream(), Path.of("src/main/resources/static/blog-img/" + fileName));
 		} catch (Exception e) {
@@ -103,8 +104,8 @@ public class BlogController {
 		// セッションから現在のユーザー情報を取得する
 		AccountEntity accountList = (AccountEntity) session.getAttribute("account");
 		// accountListから現在ログインしているユーザー名を取得する
-		//String name = accountList.getName();
-		//model.addAttribute("name", name);
+		// String name = accountList.getName();
+		// model.addAttribute("name", name);
 		// 指定されたblogIdに対応するブログを取得し、blogListに代入する
 		BlogEntity blogList = blogService.getBlogPost(blogId);
 		// blogListがnullであれば、リダイレクトする
@@ -119,19 +120,59 @@ public class BlogController {
 
 	}
 
-	//
+	// ブログ記事を更新する
 	@PostMapping("/update")
-	public String blogUpdate(@RequestParam String title, @RequestParam String image, @RequestParam String article,
-			@RequestParam Long blogId, Model model) {
+	public String blogUpdate(@RequestParam String title, @RequestParam MultipartFile image,
+			@RequestParam String article, @RequestParam Long blogId, Model model) {
 		// セッションから現在のユーザー情報を取得する
 		AccountEntity accountList = (AccountEntity) session.getAttribute("account");
 		Long accountId = accountList.getAccountId();
 
-		if (blogService.editBlogPost(title, image, article, accountId, blogId)) {
+		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-").format(new Date()) + image.getOriginalFilename();
+		try {
+			/*
+			 * ファイルを実際にサーバー上に保存処理する 
+			 * Files.copy()を使用し、imageオブジェクトから入力ストリームを取得して指定されたパスにコピーする
+			 */
+			Files.copy(image.getInputStream(), Path.of("src/main/resources/static/blog-img/" + fileName));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (blogService.editBlogPost(title, fileName, article, accountId, blogId)) {
 			return "redirect:/account/blog/list";
 		} else {
 			model.addAttribute("registerMessage", "更新に失敗しました");
 			return "blog_edit.html";
+		}
+	}
+
+	@GetMapping("/delete/article/{blogId}")
+	public String getBlogDeleteArticlePage(@PathVariable Long blogId, Model model) {
+		// 現在のユーザー情報を取得する
+		AccountEntity accountList = (AccountEntity) session.getAttribute("account");
+		Long accountId = accountList.getAccountId();
+		// 現在ログインしているユーザー名を取得する
+		String name = accountList.getName();
+		model.addAttribute("name", name);
+		// 指定されたblogIdに対応するブログを取得し、blogListに代入する
+		BlogEntity blogList = blogService.getBlogPost(blogId);
+		if (blogList == null) {
+			return "redirect:/account/blog/edit/{blogId}";
+		} else {
+			model.addAttribute("blogList", blogList);
+			return "redirect:/account/blog/list";
+		}
+	}
+
+	// 指定されたブログ記事を削除する
+	@PostMapping("/delete")
+	public String blogDelete(@RequestParam Long blogId, Model model) {
+		if (blogService.deleteBlog(blogId)) {
+			return "redirect:/account/blog/list";
+		} else {
+			model.addAttribute("DeleteMessage", "記事削除に失敗しました");
+			return "redirect:/account/blog/edit/{blogId}";
 		}
 	}
 }

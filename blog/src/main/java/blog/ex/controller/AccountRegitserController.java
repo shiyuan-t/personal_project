@@ -9,29 +9,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import blog.ex.service.AccountService;
 
-//HTTPリクエストに対するマッピング
+// HTTPリクエストに対するマッピング
 @RequestMapping("/account")
 
 @Controller
 public class AccountRegitserController {
-	//AccountServiceクラスのメソッドを呼び出し、新規登録の処理を実行する
+	// AccountServiceクラスのメソッドを呼び出し、新規登録の処理を実行する
 	@Autowired
 	private AccountService accountService;
-	//HTTP GETリクエストに対するマッピング
+
+	// HTTP GETリクエストに対するマッピング
 	@GetMapping("/register")
 	public String getAccountRegisterPage() {
 		return "register.html";
 	}
-	//HTTP POSTリクエストに対するマッピング
+
+	// HTTP POSTリクエストに対するマッピング
 	@PostMapping("/register/process")
-	public String register(@RequestParam String name,@RequestParam String email,@RequestParam String password) {
-		if(accountService.createAccount(name, email, password)){
-			return "redirect:/account/blog";
-		}else {
+	public String register(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+		if (accountService.createAccount(name, email, password)) {
+			return "redirect:/account/login";
+		} else {
 			return "register.html";
 		}
-		
-		
+
 	}
 
 }

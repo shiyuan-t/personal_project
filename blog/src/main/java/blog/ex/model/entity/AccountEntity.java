@@ -24,32 +24,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 //@Entity JPAのアノテーションで、エンティティクラスであることを示す
 @Entity
-//
+
 @Table(name = "account")
 
 public class AccountEntity {
-	//JPAのアノテーションで、プライマリーキーであることを示す
+	// JPAのアノテーションで、プライマリーキーであることを示す
 	@Id
-	//@Column(name = "account_id")JPAのアノテーションで、フィールドとテーブルのカラムをマッピングする
+	// @Column(name = "account_id")JPAのアノテーションで、フィールドとテーブルのカラムをマッピングする
 	@Column(name = "account_id")
 	// JPAのアノテーションで、プライマリーキーを自動生成する方法を指定する
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	// フィールド変数で、エンティティのプライマリーキーとして使用されら
 	private Long accountId;
-	//@NonNull Lombokのアノテーションで、nullを許容しないことを示す
+	// @NonNull Lombokのアノテーションで、nullを許容しないことを示す
 	@NonNull
 	@Column(name = "account_name")
-	//フィールド変数で、アカウント名を表す
+	// フィールド変数で、アカウント名を表す
 	private String name;
-	//フィールド変数で、メールアドレスを表す
+	// フィールド変数で、メールアドレスを表す
 	@NonNull
 	@Column(name = "account_email")
 	private String email;
-	//フィールド変数で、パスワードを表す
+	// フィールド変数で、パスワードを表す
 	@NonNull
 	@Column(name = "password")
 	private String password;
-	//フィールド変数で、登録日時を表す
+	// フィールド変数で、登録日時を表す
 	@NonNull
 	@Column(name = "register_date")
 	private LocalDateTime registerDate;

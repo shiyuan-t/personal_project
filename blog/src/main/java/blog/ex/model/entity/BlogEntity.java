@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 //@Entity JPAのアノテーションで、エンティティクラスであることを示す
 @Entity
-//
+
 @Table(name = "blog")
 
 public class BlogEntity {
@@ -56,8 +56,8 @@ public class BlogEntity {
 	// フィールド変数で、accountIdを表す
 	@Column(name = "account_id")
 	private Long accountId;
-	
-	//パラメータから取得した値をクラスのフィールドに代入し、新しい記事エンティティを作成する
+
+	// パラメータから取得した値をクラスのフィールドに代入し、新しい記事エンティティを作成する
 	public BlogEntity(@NonNull String title, @NonNull String image, @NonNull String article,
 			@NonNull LocalDateTime registerDate, Long accountId) {
 		this.title = title;

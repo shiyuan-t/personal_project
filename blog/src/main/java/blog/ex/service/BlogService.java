@@ -40,7 +40,7 @@ public class BlogService {
 		}
 	}
 
-//blogIdに基づいて、blogDaoから該当するBlogEntityを取得し返す
+// blogIdに基づいて、blogDaoから該当するBlogEntityを取得し返す
 	public BlogEntity getBlogPost(Long blogId) {
 		if (blogId == null) {
 			return null;
@@ -49,7 +49,7 @@ public class BlogService {
 		}
 	}
 
-//ブログ情報を受け取り、指定されたblogIdに対応するブログを更新する
+// ブログ情報を受け取り、指定されたblogIdに対応するブログを更新する
 	public boolean editBlogPost(String title, String image, String article, Long accountId, Long blogId) {
 		BlogEntity blogList = blogDao.findByBlogId(blogId);
 		if (accountId == null) {
@@ -61,6 +61,16 @@ public class BlogService {
 			blogList.setArticle(article);
 			blogList.setAccountId(accountId);
 			blogDao.save(blogList);
+			return true;
+		}
+	}
+
+// 指定されたIDのブログ記事を削除する
+	public boolean deleteBlog(Long blogId) {
+		if (blogId == null) {
+			return false;
+		} else {
+			blogDao.deleteByBlogId(blogId);
 			return true;
 		}
 	}
