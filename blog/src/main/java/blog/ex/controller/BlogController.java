@@ -175,4 +175,10 @@ public class BlogController {
 			return "redirect:/account/blog/edit/{blogId}";
 		}
 	}
+	// セッションを無効化する
+	@GetMapping("/logout")
+	public String Logout() {
+		session.invalidate();
+		return "redirect:/account/login";
+	}
 }
