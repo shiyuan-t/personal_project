@@ -12,7 +12,7 @@ public interface BlogDao extends JpaRepository<BlogEntity, Long> {
 	// accountIdに一致する複数のBlogEntityを取得する
 	List<BlogEntity> findByAccountId(Long accountId);
 
-	// DBに保存する
+	// DBに保存、更新する
 	BlogEntity save(BlogEntity blogEntity);
 
 	// TitleとregisterDateを検索条件として、BlogEntityを取得する
